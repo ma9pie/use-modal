@@ -1,0 +1,8 @@
+# build output
+dist
+
+# Dependency directories
+node_modules/
+
+# Misc
+.DS_Store
