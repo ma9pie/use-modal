@@ -25,5 +25,6 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
