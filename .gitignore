@@ -3,6 +3,24 @@ dist
 
 # Dependency directories
 node_modules/
+/.pnp
+.pnp.js
+
+# testing
+/coverage
 
 # Misc
 .DS_Store
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# local env files
+.env*.local
+
+# IED
+.vscode
+.idea
