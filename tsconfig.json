@@ -8,11 +8,7 @@
     /* Modules */
     "module": "esnext",
     "moduleResolution": "node",
-    "baseUrl": ".",
     "resolveJsonModule": true,
-    "paths": {
-      "@/*": ["src/*"]
-    },
 
     /* Emit */
     "declaration": true,

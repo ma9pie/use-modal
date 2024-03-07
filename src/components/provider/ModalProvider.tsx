@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useMemo, useState } from 'react';
 
-import Modal from '@/components/modals/Modal';
-import { ModalProps, Modals } from '@/types';
+import { ModalProps, Modals } from '../../types';
+import Modal from '../modals/Modal';
 
 type Props = {
   deleteDelay?: number;
