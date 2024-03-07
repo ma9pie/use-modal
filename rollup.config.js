@@ -17,7 +17,11 @@ const config = {
     commonjs({
       include: 'node_modules/**',
     }),
-    babel({ extensions, include: ['src/**/*'], runtimeHelpers: true }),
+    babel({
+      extensions,
+      include: ['src/**/*'],
+      runtimeHelpers: true,
+    }),
     url(),
     svgr(),
   ],

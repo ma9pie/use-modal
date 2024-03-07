@@ -1,1 +1,1 @@
-export { useMount } from './useMount';
+export { default as useModal } from './useModal';
