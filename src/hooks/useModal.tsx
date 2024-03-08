@@ -50,18 +50,18 @@ const useModal = () => {
       setModals(newMap);
       await delay(deleteDelay);
       newMap.delete(_id);
-      setModals(new Map(newMap));
+      return setModals(new Map(newMap));
     },
     [deleteDelay, setModals, getRecentModalId]
   );
 
   const changeModal = useCallback(
     async (props: ModalProps) => {
-      closeModal();
-      await delay(deleteDelay);
+      await closeModal();
+      await delay(20);
       openModal(props);
     },
-    [deleteDelay, openModal, closeModal]
+    [openModal, closeModal]
   );
 
   return {
