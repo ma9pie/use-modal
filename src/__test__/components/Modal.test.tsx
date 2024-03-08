@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 
-import Modal from '../../../src/components/modals/Modal';
+import Modal from '@/components/modals/Modal';
 
 // TODO: Modal test
 test('', async () => {

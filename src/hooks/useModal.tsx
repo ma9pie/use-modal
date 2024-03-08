@@ -1,8 +1,8 @@
 import { useCallback, useContext } from 'react';
 
-import { ModalContext } from '../components/provider/ModalProvider';
-import { ModalProps, Modals } from '../types';
-import { createUid, delay } from '../utils';
+import { ModalContext } from '@/components/provider/ModalProvider';
+import { ModalProps, Modals } from '@/types';
+import { createUid, delay } from '@/utils';
 
 let _modals: Modals;
 

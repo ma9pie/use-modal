@@ -1,4 +1,4 @@
-import { createUid } from '../../../src/utils';
+import { createUid } from '@/utils';
 
 describe('createUid test', () => {
   test('', () => {

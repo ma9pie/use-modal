@@ -2,9 +2,9 @@ import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 import React from 'react';
 
-import useFixedScreen from '../../hooks/useFixedScreen';
-import useModal from '../../hooks/useModal';
-import { ModalProps } from '../../types';
+import useFixedScreen from '@/hooks/useFixedScreen';
+import useModal from '@/hooks/useModal';
+import { ModalProps } from '@/types';
 
 const Modal = ({
   id,

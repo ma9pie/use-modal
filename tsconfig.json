@@ -9,9 +9,14 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
 
     /* Emit */
     "declaration": true,
+    "emitDeclarationOnly": true,
     "outDir": "dist",
 
     /* Interop Constraints */
@@ -25,6 +30,6 @@
     /* Completeness */
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["src"]
+  // "exclude": ["**/*.stories.tsx", "**/*.test.ts", "**/*.test.tsx"]
 }
