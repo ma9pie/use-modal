@@ -1,6 +1,6 @@
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import useFixedScreen from '@/hooks/useFixedScreen';
 import useModal from '@/hooks/useModal';
@@ -12,11 +12,18 @@ const Modal = ({
   top = '50%',
   left = '50%',
   padding = '16px',
-  component,
+  onAfterOpen = () => {},
+  onAfterClose = () => {},
+  component = () => <></>,
 }: ModalProps) => {
   const { closeModal } = useModal();
 
   useFixedScreen('modal-provider');
+
+  useEffect(() => {
+    onAfterOpen();
+    return () => onAfterClose();
+  }, [onAfterOpen, onAfterClose]);
 
   return (
     <Wrapper className={isOpen ? fadeIn : fadeOut}>
@@ -28,7 +35,7 @@ const Modal = ({
           padding,
         }}
       >
-        {component && component()}
+        {component()}
       </Container>
     </Wrapper>
   );

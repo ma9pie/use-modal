@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useMemo, useState } from 'react';
 
+import BottomSheet from '@/components/modals/BottomSheet';
 import Modal from '@/components/modals/Modal';
 import { ModalProps, Modals } from '@/types';
 
@@ -27,7 +28,14 @@ const ModalProvider = ({ deleteDelay = 200, children }: Props) => {
       <div id="modal-provider">
         {modalList.map((props) => (
           <div key={props.id}>
-            <Modal {...props}></Modal>
+            {(() => {
+              switch (props.type) {
+                case 'bottomSheet':
+                  return <BottomSheet {...props}></BottomSheet>;
+                default:
+                  return <Modal {...props}></Modal>;
+              }
+            })()}
           </div>
         ))}
       </div>

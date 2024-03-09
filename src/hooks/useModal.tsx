@@ -1,7 +1,7 @@
 import { useCallback, useContext } from 'react';
 
 import { ModalContext } from '@/components/provider/ModalProvider';
-import { ModalProps, Modals } from '@/types';
+import { ModalProps, Modals, ModalType } from '@/types';
 import { createUid, delay } from '@/utils';
 
 let _modals: Modals;
@@ -30,6 +30,7 @@ const useModal = () => {
       if (props.id && newMap.has(props.id)) return;
       const id = props.id || createUid();
       props.id = id;
+      props.type = props.type || ModalType.Modal;
       props.isOpen = true;
       props.createdAt = new Date().getTime();
       newMap.set(id, props);
@@ -64,10 +65,15 @@ const useModal = () => {
     [openModal, closeModal]
   );
 
+  const openBottomSheet = (props: ModalProps) => {
+    openModal({ ...props, type: ModalType.BottomSheet });
+  };
+
   return {
     openModal,
     closeModal,
     changeModal,
+    openBottomSheet,
   };
 };
 

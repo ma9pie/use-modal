@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
 import useModal from '@/hooks/useModal';
 
 const meta = {
-  title: 'Components/Modal',
+  title: 'Components/BottomSheet',
   parameters: {},
   argTypes: {},
 } satisfies Meta;
@@ -12,17 +12,19 @@ const meta = {
 export default meta;
 
 const App = () => {
-  const { openModal } = useModal();
+  const { openBottomSheet } = useModal();
 
   return (
     <div>
-      <button onClick={() => openModal({ component: () => <div>123</div> })}>
-        Open Modal
+      <button
+        onClick={() => openBottomSheet({ component: () => <div>123</div> })}
+      >
+        Open BottomSheet
       </button>
     </div>
   );
 };
 
-export const Modal_ = {
+export const BottomSheet_ = {
   render: () => <App></App>,
 };
