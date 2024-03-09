@@ -1,7 +1,7 @@
-import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 import React, { useEffect } from 'react';
 
+import GlobalStyles from '@/components/styles/GlobalStyles';
 import useFixedScreen from '@/hooks/useFixedScreen';
 import useModal from '@/hooks/useModal';
 import { ModalProps } from '@/types';
@@ -26,7 +26,7 @@ const Modal = ({
   }, [onAfterOpen, onAfterClose]);
 
   return (
-    <Wrapper className={isOpen ? fadeIn : fadeOut}>
+    <GlobalStyles className={isOpen ? 'fade-in' : 'fade-out'}>
       <Overlay onClick={() => closeModal(id)}></Overlay>
       <Container
         style={{
@@ -37,35 +37,12 @@ const Modal = ({
       >
         {component()}
       </Container>
-    </Wrapper>
+    </GlobalStyles>
   );
 };
 
 export default Modal;
 
-const fadeIn = css`
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  animation: fade-in 0.2s ease-in-out forwards;
-`;
-const fadeOut = css`
-  @keyframes fade-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  animation: fade-out 0.2s ease-in-out forwards;
-`;
-const Wrapper = styled.div``;
 const Overlay = styled.div`
   position: fixed;
   top: 0;

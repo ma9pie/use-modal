@@ -1,10 +1,8 @@
-import '@/styles/app.css';
-
-import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 import React, { useEffect } from 'react';
 
 import Text from '@/components/common/Text';
+import GlobalStyles from '@/components/styles/GlobalStyles';
 import useFixedScreen from '@/hooks/useFixedScreen';
 import useModal from '@/hooks/useModal';
 import { ModalProps } from '@/types';
@@ -28,13 +26,13 @@ const BottomSheet = ({
   }, [onAfterOpen, onAfterClose]);
 
   return (
-    <Wrapper>
+    <GlobalStyles>
       <Overlay
         onClick={() => closeModal(id)}
-        className={isOpen ? fadeIn : fadeOut}
+        className={isOpen ? 'fade-in' : 'fade-out'}
       ></Overlay>
       <Container
-        className={isOpen ? slideUp : slideDown}
+        className={isOpen ? 'slide-up' : 'slide-down'}
         style={{
           height,
         }}
@@ -47,57 +45,12 @@ const BottomSheet = ({
         </Top>
         <Content>{component()} </Content>
       </Container>
-    </Wrapper>
+    </GlobalStyles>
   );
 };
 
 export default BottomSheet;
 
-const fadeIn = css`
-  @keyframes fade-in {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  animation: fade-in 0.2s ease-in-out forwards;
-`;
-const fadeOut = css`
-  @keyframes fade-out {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-  animation: fade-out 0.2s ease-in-out forwards;
-`;
-const slideUp = css`
-  @keyframes slide-up {
-    from {
-      transform: translateY(100%);
-    }
-    to {
-      transform: translateY(0%);
-    }
-  }
-  animation: slide-up 0.2s ease-in-out forwards;
-`;
-const slideDown = css`
-  @keyframes slide-down {
-    from {
-      transform: translateY(0%);
-    }
-    to {
-      transform: translateY(100%);
-    }
-  }
-  animation: slide-down 0.2s ease-in-out forwards;
-`;
-const Wrapper = styled.div``;
 const Overlay = styled.div`
   position: fixed;
   top: 0;
