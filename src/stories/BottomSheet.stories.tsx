@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import useModal from '@/hooks/useModal';
 
@@ -17,7 +17,12 @@ const App = () => {
   return (
     <div>
       <button
-        onClick={() => openBottomSheet({ component: () => <div>123</div> })}
+        onClick={() =>
+          openBottomSheet({
+            title: 'Title',
+            component: () => <div>123</div>,
+          })
+        }
       >
         Open BottomSheet
       </button>

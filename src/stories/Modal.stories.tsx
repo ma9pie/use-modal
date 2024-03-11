@@ -1,5 +1,5 @@
 import type { Meta } from '@storybook/react';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import useModal from '@/hooks/useModal';
 

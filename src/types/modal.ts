@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 export enum ModalType {
   Modal = 'modal',
@@ -12,10 +12,18 @@ export interface ModalProps {
 
   title?: ReactNode;
 
+  // classNames
+  overlayClassName?: string;
+  contentClassName?: string;
+
+  // common style
+  overlayBg?: string;
+  contentBg?: string;
+  padding?: number | string;
+
   // modal style
   top?: number | string;
   left?: number | string;
-  padding?: number | string;
 
   // bottomSheet style
   height?: number | string;
