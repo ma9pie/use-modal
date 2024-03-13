@@ -28,10 +28,11 @@ export interface ModalProps {
   // bottomSheet style
   height?: number | string;
 
+  // content
+  component?: () => JSX.Element;
+
   // function
   onAfterOpen?: () => void;
   onAfterClose?: () => void;
-
-  component?: () => JSX.Element;
 }
 export type Modals = Map<string, ModalProps>;

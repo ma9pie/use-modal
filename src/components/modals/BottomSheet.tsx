@@ -28,8 +28,10 @@ const BottomSheet = ({
 
   useEffect(() => {
     onAfterOpen();
-    return () => onAfterClose();
-  }, [onAfterOpen, onAfterClose]);
+    return () => {
+      onAfterClose();
+    };
+  }, []);
 
   return (
     <Wrapper>

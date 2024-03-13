@@ -26,8 +26,10 @@ const Modal = ({
 
   useEffect(() => {
     onAfterOpen();
-    return () => onAfterClose();
-  }, [onAfterOpen, onAfterClose]);
+    return () => {
+      onAfterClose();
+    };
+  }, []);
 
   return (
     <Wrapper className={isOpen ? 'fade-in' : 'fade-out'}>

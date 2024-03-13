@@ -26,15 +26,19 @@ const useModal = () => {
 
   const openModal = useCallback(
     (props: ModalProps) => {
-      const newMap = new Map(_modals);
-      if (props.id && newMap.has(props.id)) return;
-      const id = props.id || createUid();
-      props.id = id;
-      props.type = props.type || ModalType.Modal;
-      props.isOpen = true;
-      props.createdAt = new Date().getTime();
-      newMap.set(id, props);
-      setModals(newMap);
+      setModals((prevMap: Modals) => {
+        const newMap = new Map(prevMap);
+        if (props.id && newMap.has(props.id)) {
+          return prevMap;
+        }
+        const id = props.id || createUid();
+        props.id = id;
+        props.type = props.type || ModalType.Modal;
+        props.isOpen = true;
+        props.createdAt = new Date().getTime();
+        newMap.set(id, props);
+        return newMap;
+      });
     },
     [setModals]
   );
@@ -43,15 +47,22 @@ const useModal = () => {
     async (id?: string) => {
       const _id = id || getRecentModalId();
       if (!_id) return;
-      const newMap = new Map(_modals);
-      const props = newMap.get(_id);
-      if (!props) return;
-      props.isOpen = false;
-      newMap.set(_id, props);
-      setModals(newMap);
+      setModals((prevMap: Modals) => {
+        const newMap = new Map(prevMap);
+        const props = newMap.get(_id);
+        if (!props) {
+          return prevMap;
+        }
+        props.isOpen = false;
+        newMap.set(_id, props);
+        return newMap;
+      });
       await delay(deleteDelay);
-      newMap.delete(_id);
-      return setModals(new Map(newMap));
+      setModals((prevMap: Modals) => {
+        const newMap = new Map(prevMap);
+        newMap.delete(_id);
+        return newMap;
+      });
     },
     [deleteDelay, setModals, getRecentModalId]
   );
@@ -59,10 +70,10 @@ const useModal = () => {
   const changeModal = useCallback(
     async (props: ModalProps) => {
       await closeModal();
-      await delay(20);
+      await delay(deleteDelay / 2);
       openModal(props);
     },
-    [openModal, closeModal]
+    [deleteDelay, openModal, closeModal]
   );
 
   const openBottomSheet = (props: ModalProps) => {

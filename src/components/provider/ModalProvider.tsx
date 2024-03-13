@@ -1,5 +1,11 @@
 import { css, Global } from '@emotion/react';
-import React, { createContext, ReactNode, useMemo, useState } from 'react';
+import React, {
+  createContext,
+  ReactNode,
+  SetStateAction,
+  useMemo,
+  useState,
+} from 'react';
 
 import BottomSheet from '@/components/modals/BottomSheet';
 import Modal from '@/components/modals/Modal';
@@ -13,7 +19,7 @@ type Props = {
 export const ModalContext = createContext({
   deleteDelay: 0,
   modals: new Map(),
-  setModals: (state: Modals) => {},
+  setModals: (value: SetStateAction<Modals>) => {},
 });
 
 const ModalProvider = ({ deleteDelay = 200, children }: Props) => {
