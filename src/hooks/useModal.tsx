@@ -4,16 +4,12 @@ import { ModalContext } from '@/components/provider/ModalProvider';
 import { ModalProps, Modals, ModalType } from '@/types';
 import { createUid, delay } from '@/utils';
 
-let _modals: Modals;
-
 const useModal = () => {
   const { deleteDelay, modals, setModals } = useContext(ModalContext);
-  _modals = modals;
 
   // Check the most recently opened modal id
   const getRecentModalId = useCallback(() => {
-    const hashMap: Map<string, ModalProps> = new Map(_modals);
-    const arr = Array.from(hashMap.values()).sort(
+    const arr = Array.from(modals.values()).sort(
       (a: ModalProps, b: ModalProps) => {
         const createdAtA = a.createdAt || 0;
         const createdAtB = b.createdAt || 0;
@@ -22,7 +18,7 @@ const useModal = () => {
     );
     if (arr.length === 0) return null;
     return arr[0].id;
-  }, []);
+  }, [modals]);
 
   const openModal = useCallback(
     (props: ModalProps) => {
@@ -63,6 +59,7 @@ const useModal = () => {
         newMap.delete(_id);
         return newMap;
       });
+      return;
     },
     [deleteDelay, setModals, getRecentModalId]
   );
@@ -70,10 +67,9 @@ const useModal = () => {
   const changeModal = useCallback(
     async (props: ModalProps) => {
       await closeModal();
-      await delay(deleteDelay / 2);
       openModal(props);
     },
-    [deleteDelay, openModal, closeModal]
+    [openModal, closeModal]
   );
 
   const openBottomSheet = (props: ModalProps) => {

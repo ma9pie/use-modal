@@ -13,7 +13,7 @@ const meta = {
 export default meta;
 
 const App = () => {
-  const { openModal, closeModal } = useModal();
+  const { openModal, closeModal, changeModal } = useModal();
 
   const [count, setCount] = useState(0);
 
@@ -23,6 +23,7 @@ const App = () => {
       component: () => (
         <div>
           <Button onClick={openTest2Modal}>openTest2Modal</Button>
+          <Button onClick={changeToTest2Modal}>changeToTest2Modal</Button>
         </div>
       ),
     });
@@ -35,6 +36,12 @@ const App = () => {
       onAfterClose: async () => {
         closeModal('test1');
       },
+    });
+  };
+  const changeToTest2Modal = () => {
+    changeModal({
+      id: 'test2',
+      component: () => <div>test2</div>,
     });
   };
 
